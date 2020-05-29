@@ -64,6 +64,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-v9支付前端文档" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/29/v9%E6%94%AF%E4%BB%98%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/" class="article-date">
+  <time datetime="2020-05-29T03:16:36.000Z" itemprop="datePublished">2020-05-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/29/v9%E6%94%AF%E4%BB%98%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/">v9支付前端文档</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="支付业务梳理文档"><a href="#支付业务梳理文档" class="headerlink" title="支付业务梳理文档"></a>支付业务梳理文档</h1><h3 id="支付业务的简单划分"><a href="#支付业务的简单划分" class="headerlink" title="支付业务的简单划分"></a>支付业务的简单划分</h3><p>详情页 &gt; 联合支付页 &gt; 支付空白页</p>
+<p>专题活动 &gt; 支付空白页</p>
+<h3 id="为什么不在详情页直接支付"><a href="#为什么不在详情页直接支付" class="headerlink" title="为什么不在详情页直接支付"></a>为什么不在详情页直接支付</h3><p>可以在详情页直接支付吗，请求后端接口，通过此接口完成微信登录授权和切支付，open_id的处理。可以在详情页支付。不再详情页支付的原因，本来详情页的逻辑就很重了，把支付加上会更重，在弹窗上展现联合支付，内容太多，用户体验不好。</p>
+<h3 id="详情页未登录去支付，登录在哪里处理？"><a href="#详情页未登录去支付，登录在哪里处理？" class="headerlink" title="详情页未登录去支付，登录在哪里处理？"></a>详情页未登录去支付，登录在哪里处理？</h3><ul>
+<li>一步版</li>
+<li>两步版</li>
+</ul>
+<p>不管是几步版，都需要处理一个事情就是登录处理，登录处理应该放到哪？详情页还是支付页，</p>
+<p>如果是两步版，详情页不处理登录直接跳联合支付页，联合支付页是一个要求登录的页面，会在联合支付页调起支付。</p>
+<p>如果是一步版，详情跳支付空白页，登录处理应该放到哪？如果放到支付空白页，支付空白页要先去进行登录，如果没有获取到open_id，还要去拿open_id，再回到支付空白页，从用户体验上看，加载空白页的加载进度条，不端重复，刚进度条有了又从新有了进度条。于是李博增加了一个接口用于处理在详情页微信登录，登录成功后再跳转到支付空白页。</p>
+<blockquote>
+<p><code>order/loginpay/login/pre</code>此接口检查是否登录，没有的话跳转登录，有就切支付。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/29/v9%E6%94%AF%E4%BB%98%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/" data-id="ckarmy7g60000b62vciwe98lp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-微信小程序开发与原理 copy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/29/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B8%8E%E5%8E%9F%E7%90%86%20copy/" class="article-date">
@@ -509,6 +558,10 @@
       <ul>
         
           <li>
+            <a href="/2020/05/29/v9%E6%94%AF%E4%BB%98%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/">v9支付前端文档</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/29/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B8%8E%E5%8E%9F%E7%90%86%20copy/">微信小程序开发与原理 copy</a>
           </li>
         
@@ -522,10 +575,6 @@
         
           <li>
             <a href="/2017/03/09/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E6%98%A5%E5%A4%A9/">响应式的春天</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/05/%E5%9C%A8react%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%8C%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">在react项目中，富文本编辑器的使用</a>
           </li>
         
       </ul>
